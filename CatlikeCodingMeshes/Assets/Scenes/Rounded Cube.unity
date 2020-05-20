@@ -286,10 +286,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera Follower
       objectReference: {fileID: 0}
-    - target: {fileID: 1935515949227108713, guid: 9e4743d76ebcceb4d9ff1146b9e64ecd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e4743d76ebcceb4d9ff1146b9e64ecd, type: 3}

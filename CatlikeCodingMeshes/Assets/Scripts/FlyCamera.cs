@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
  
 public class FlyCamera : MonoBehaviour {
  
@@ -18,6 +19,7 @@ public class FlyCamera : MonoBehaviour {
     public float maxShift = 100f; //Maximum speed when holdin gshift
     public float camSens = 0.25f; //How sensitive it with mouse
     public bool is_active = false;
+	public GameObject enable_button = null;
 	private Vector3 lastMouse = new Vector3(255, 255, 255); //kind of in the middle of the screen, rather than at the top (play)
     private float totalRun= 1.0f;
 	
@@ -59,6 +61,11 @@ public class FlyCamera : MonoBehaviour {
 		
 		if(Input.GetKey(KeyCode.Escape)){
 			is_active = false;
+			enable_button.SetActive(true);
+		}
+		if(is_active && enable_button.activeSelf){
+			lastMouse = Input.mousePosition;
+			enable_button.SetActive(false);
 		}
     }
      
