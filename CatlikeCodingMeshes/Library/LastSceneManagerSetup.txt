@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Rounded Cube.unity
+- path: Assets/Scenes/Cube Sphere.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
