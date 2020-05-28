@@ -5,6 +5,7 @@ using UnityEngine;
 public class TransformationGrid : MonoBehaviour
 {
     public Transform prefab;
+	Matrix4x4 transformation;
 	public int grid_resolution = 10;
 	
 	Transform[] grid;
@@ -41,7 +42,7 @@ public class TransformationGrid : MonoBehaviour
 	}
 	
 	void Update(){
-		GetComponents<Transformation>(transformations);
+		UpdateTransformation();
 		for(int i = 0, z = 0; z < grid_resolution; z++){
 			for(int y = 0; y < grid_resolution; y++){
 				for(int x = 0; x < grid_resolution; x++, i++){
@@ -51,12 +52,19 @@ public class TransformationGrid : MonoBehaviour
 		}
 	}
 	
+	void UpdateTransformation(){
+		GetComponents<Transformation>(transformations);
+		if(transformations.Count > 0){
+			transformation = transformations[0].Matrix;
+			for (int i = 1; i < transformations.Count; i++){
+				transformation = transformations[i].Matrix * transformation;
+			}
+		}
+	}
+	
 	Vector3 TransformPoint(int x, int y, int z){
 		Vector3 coordinates = GetCoordinates(x, y, z);
-		for(int i = 0; i < transformations.Count; i++){
-			coordinates = transformations[i].Apply(coordinates);
-		}
-		return coordinates;
+		return transformation.MultiplyPoint(coordinates);
 	}
 	
 	
